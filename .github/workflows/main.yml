@@ -21,13 +21,7 @@ jobs:
           aws-region: ap-south-1
 
       - name: Deploy to S3
-        run: |
-          # Your deployment script or commands to sync files to S3
-          # Example using AWS CLI:
-          aws s3 sync ./code_file/index.html s3://every-065408
+        run: aws s3 sync ./code_file/index.html s3://every-065408
 
       - name: Invalidate CloudFront Cache
-        run: |
-          # Your script or commands to invalidate CloudFront cache
-          # Example using AWS CLI:
-          aws cloudfront create-invalidation --distribution-id https://d1z3lrvu2yn7k9.cloudfront.net --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id https://d1z3lrvu2yn7k9.cloudfront.net --paths "/*"
