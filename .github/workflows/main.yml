@@ -13,6 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get install -y awscli
+
       - name: Set up AWS CLI
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -21,7 +25,7 @@ jobs:
           aws-region: ap-south-1
 
       - name: Deploy to S3
-        run: aws s3 sync ./code_file/index.html s3://every-065408
+        run: aws s3 sync ./code_file/ s3://every-065408/
 
       - name: Invalidate CloudFront Cache
         run: aws cloudfront create-invalidation --distribution-id https://d1z3lrvu2yn7k9.cloudfront.net --paths "/*"
